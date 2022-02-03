@@ -52,8 +52,8 @@ contract FlashLoan {
     }
     
     /**
-     * 该函数是在从Uniswap借钱时，Uniswap要回调的函数（该函数的作用就是你借到钱了想拿钱干啥）
-     * 我们的逻辑是借到USDT了，就将USDT换成USDT，在换成ETH给它还回去
+     * 该函数是在从Uniswap借到钱时，Uniswap要回调的函数（该函数要执行的逻辑就是你借到钱了想拿钱干啥，最后还要还钱，如果不还钱，整个事务执行失败，就相当于你没有借过钱）
+     * 我们的逻辑是借到USDT了，就将USDT换成USDT，再将USDC换成ETH给它还回去
      */
     function uniswapV2Call(address account,uint256 amount0,uint256 amount1,bytes memory data) public{
         // 查询当前合约地址是否借到钱了，也就是查看当前合约地址余额是否有钱了
